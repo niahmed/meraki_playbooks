@@ -1,0 +1,25 @@
+---
+- name: Deploy Meraki updates
+  hosts: meraki_devices
+  gather_facts: false
+  vars:
+    api_key: "your_api_key"
+    organization_id: "your_organization_id"
+    network_id: "your_network_id"
+  tasks:
+  - name: Retrieve Meraki devices
+    meraki_device:
+      auth_key: "{{ api_key }}"
+      org_id: "{{ organization_id }}"
+      net_id: "{{ network_id }}"
+      type: devices
+    register: devices
+
+  - name: Update Meraki devices
+    meraki_device:
+      auth_key: "{{ api_key }}"
+      org_id: "{{ organization_id }}"
+      net_id: "{{ network_id }}"
+      type: update_firmware
+      device_serial: "{{ item.serial }}"
+    loop: "{{ devices.devices }}"
