@@ -1,0 +1,12 @@
+---
+- playbooks:
+  - meraki_deploy_updates.yml
+  
+- roles:
+  - meraki_admin:
+    - tasks:
+      - main.yml
+      
+  - meraki_alert:
+    - tasks:
+      - main.yml
