@@ -1,7 +1,7 @@
 ---
 - playbooks:
-  - meraki_deploy_updates.yml
   - meraki_admin.yml
+  - meraki_alert.yml
   
 - roles:
   - meraki_admin:
